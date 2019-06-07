@@ -2,8 +2,10 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 
+
 const ENTRY_PATH = path.resolve(__dirname, 'src')
 const OUTPUT_PATH = path.resolve(__dirname, './')
+const devMode = process.env.NODE_ENV !== 'production';
 
 module.exports = {
     mode: 'production',
@@ -33,17 +35,19 @@ module.exports = {
                 }
             },
             {
-                test: /\.(s|c)ss$/,
-                loader: [
-                    // fallback to style-loader in development
-                    MiniCssExtractPlugin.loader,
-                    "css-loader",
-                    "sass-loader"
-                ]
-            },
-            {
-                test: /\.css$/,
-                use: ['style-loader', 'css-loader']
+                test: /\.(sa|sc|c)ss$/,
+                use: [
+                    devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
+                    {
+                        loader: "css-loader",
+                        options: {
+                            minimize: true,
+                            url: false
+                        }
+                    },
+                    'postcss-loader',
+                    'sass-loader',
+                ],
             },
             {
                 test: /\.(png|jpg|gif)$/i,
