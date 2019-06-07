@@ -11,7 +11,6 @@ module.exports = {
     output: {
         path: OUTPUT_PATH,
         filename: 'bundle.js',
-        sourceMapFilename: "bundle.map",
         publicPath: '/'
     },
     devServer: {
@@ -21,7 +20,6 @@ module.exports = {
         open: true,
         historyApiFallback: true
     },
-    devtool: "#source-map",
     module: {
         rules: [
             {
@@ -64,6 +62,12 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({
             template: path.resolve(ENTRY_PATH, 'index.html')
+        }),
+        new MiniCssExtractPlugin({
+            // Options similar to the same options in webpackOptions.output
+            // both options are optional
+            filename: "[name].css",
+            chunkFilename: "[id].css"
         })
     ]
 }

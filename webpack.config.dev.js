@@ -1,9 +1,9 @@
-const path = require('path')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const MiniCssExtractPlugin = require("mini-css-extract-plugin")
-
-const ENTRY_PATH = path.resolve(__dirname, 'src')
-const OUTPUT_PATH = path.resolve(__dirname, './')
+const path = require('path'),
+    HtmlWebpackPlugin = require('html-webpack-plugin'),
+    MiniCssExtractPlugin = require("mini-css-extract-plugin"),
+    webpack = require('webpack'),
+    ENTRY_PATH = path.resolve(__dirname, 'src'),
+    OUTPUT_PATH = path.resolve(__dirname, './')
 
 module.exports = {
     mode: 'production',
@@ -11,6 +11,7 @@ module.exports = {
     output: {
         path: OUTPUT_PATH,
         filename: 'bundle.js',
+        sourceMapFilename: "bundle.map",
         publicPath: '/'
     },
     devServer: {
@@ -20,12 +21,7 @@ module.exports = {
         open: true,
         historyApiFallback: true
     },
-    plugins: [
-        new HtmlWebpackPlugin({
-            template: path.resolve(ENTRY_PATH, 'index.html')
-        }),
-
-    ],
+    devtool: "#source-map",
     module: {
         rules: [
             {
@@ -39,7 +35,7 @@ module.exports = {
                 }
             },
             {
-                test: /\.scss$/,
+                test: /\.(s|c)ss$/,
                 loader: [
                     // fallback to style-loader in development
                     MiniCssExtractPlugin.loader,
@@ -55,22 +51,25 @@ module.exports = {
                 test: /\.(png|jpg|gif)$/i,
                 use: [
                     {
-                        loader: 'url-loader',
+                        loader: 'file-loader',
                         options: {
+                            presets: ['url-loader'],
                             limit: 8192
                         }
                     }
                 ]
-            },
-            {
-                test: /\.(png|jpg|gif)$/,
-                use: [
-                    {
-                        loader: 'file-loader',
-                        options: {}
-                    }
-                ]
             }
         ]
-    }
+    },
+    plugins: [
+        new HtmlWebpackPlugin({
+            template: path.resolve(ENTRY_PATH, 'index.html')
+        }),
+        new MiniCssExtractPlugin({
+            // Options similar to the same options in webpackOptions.output
+            // both options are optional
+            filename: "[name].css",
+            chunkFilename: "[id].css"
+        })
+    ]
 }
