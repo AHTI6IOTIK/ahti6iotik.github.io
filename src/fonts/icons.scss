@@ -1,0 +1,54 @@
+$icon_font_name:"font_to_landing";
+@font-face {
+	font-family:$icon_font_name;
+	src: url('../fonts/font_to_landing.eot');
+	src: url('../fonts/font_to_landing.eot?#iefix') format('eot'),
+	url('../fonts/font_to_landing.woff') format('woff'),
+	url('../fonts/font_to_landing.ttf') format('truetype'),
+	url('../fonts/font_to_landing.svg#font_to_landing') format('svg');
+}
+.icons_prime-logo,
+%last_selector {
+		&:before {
+			font-family:$icon_font_name;
+			-webkit-font-smoothing: antialiased;
+			-moz-osx-font-smoothing: grayscale;
+			font-style: normal;
+			font-variant: normal;
+			font-weight: normal;
+			// speak: none; // only necessary if not using the private unicode range (firstGlyph option)
+			text-decoration: none;
+			text-transform: none;
+		}
+	}
+
+.icons_prime {
+	&:before,
+	&:after {
+		font-family: $icon_font_name;
+		speak: none;
+		font-style: normal;
+		font-weight: normal;
+		font-variant: normal;
+		text-transform: none;
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+	}
+}
+
+.icons_prime {
+	&:after {
+		font-family: $icon_font_name;
+		speak: none;
+		font-style: normal;
+		font-weight: normal;
+		font-variant: normal;
+		text-transform: none;
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+	}
+}
+
+.icons_prime-logo:before {
+	content:'\E001';
+}

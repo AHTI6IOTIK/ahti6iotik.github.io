@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack-dev-server --mode development --config webpack.config.dev.js",
-    "build": "webpack --mode production  --config webpack.config.js"
+    "dev": "webpack-dev-server --mode development --config webpack.config.js",
+    "build": "webpack --config webpack.config.js"
   },
   "keywords": [],
   "author": "",
@@ -20,32 +20,21 @@
     "uuidv4": "^1.0.1"
   },
   "devDependencies": {
-    "autoprefixer": "^9.1.5",
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.5",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
-    "babel-preset-stage-0": "^6.24.1",
-    "css-loader": "^1.0.0",
-    "extract-text-webpack-plugin": "^3.0.2",
+    "babel-preset-stage-2": "^6.24.1",
+    "css-loader": "^1.0.1",
     "file-loader": "^2.0.0",
     "html-webpack-plugin": "^3.2.0",
-    "image-webpack-loader": "^4.3.1",
-    "mini-css-extract-plugin": "^0.4.3",
-    "minimist": "^1.2.0",
-    "node-sass": "^4.9.3",
-    "postcss-loader": "^3.0.0",
-    "prop-types": "^15.6.2",
-    "react-transition-group": "^2.5.0",
-    "rimraf": "^2.6.2",
+    "mini-css-extract-plugin": "^0.4.5",
+    "node-sass": "^4.10.0",
     "sass-loader": "^7.1.0",
-    "style-loader": "^0.23.0",
-    "webpack": "^4.17.2",
+    "style-loader": "^0.23.1",
+    "url-loader": "^1.1.1",
+    "webpack": "^4.16.3",
     "webpack-cli": "^3.1.0",
-    "webpack-dev-server": "^3.1.8"
-  },
-  "browserslist": [
-    "> 1%",
-    "ie > 9"
-  ]
+    "webpack-dev-server": "^3.1.5"
+  }
 }
