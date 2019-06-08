@@ -151,7 +151,8 @@ const ColorItem = ({title, color}) => {
     let style = {'backgroundColor': color, 'height': '25px'}
     return (
         <div style={{'borderColor': color}} className={'color-item'}>
-            <p>{title}</p>
+            <p>title: {title}</p>
+            <p>color: {color}</p>
             <div style={style}></div>
         </div>
     )
