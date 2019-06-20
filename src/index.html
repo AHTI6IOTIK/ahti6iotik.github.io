@@ -18,8 +18,26 @@
     <!-- Google Analytics Content Experiment code -->
     <script>
         if (!~location.search.indexOf('ab=1')) {
-            require('/src/js/gexperiment');
-            require('/src/js/gex');
+            let script = document.createElement('script'),
+                script2 = document.createElement('script');
+            script.setAttribute('type', 'text/html');
+            script2.setAttribute('type', 'text/html');
+            script.innerHTML =
+                '        function utmx_section(){}function utmx(){}(function(){var\n' +
+                '        k=\'197252743-3\',d=document,l=d.location,c=d.cookie;\n' +
+                '        if(l.search.indexOf(\'utm_expid=\'+k)>0)return;\n' +
+                '        function f(n){if(c){var i=c.indexOf(n+\'=\');if(i>-1){var j=c.\n' +
+                '        indexOf(\';\',i);return escape(c.substring(i+n.length+1,j<0?c.\n' +
+                '            length:j))}}}var x=f(\'__utmx\'),xx=f(\'__utmxx\'),h=l.hash;d.write(\n' +
+                '            \'<sc\'+\'ript src="\'+\'http\'+(l.protocol==\'https:\'?\'s://ssl\':\n' +
+                '            \'://www\')+\'.google-analytics.com/ga_exp.js?\'+\'utmxkey=\'+k+\n' +
+                '            \'&utmx=\'+(x?x:\'\')+\'&utmxx=\'+(xx?xx:\'\')+\'&utmxtime=\'+new Date().\n' +
+                '            valueOf()+(h?\'&utmxhash=\'+escape(h.substr(1)):\'\')+\n' +
+                '            \'\\" type=\\"text/javascript\\" charset=\\"utf-8\\"><\\/sc\'+\'ript>\')})();\n';
+
+            script2.innerHTML = 'utmx(\'url\',\'A/B\');';
+            document.head.appendChild(script);
+            document.head.appendChild(script2);
         }
     </script>
     <!-- End of Google Analytics Content Experiment code -->
